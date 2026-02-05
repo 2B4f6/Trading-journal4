@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trading Journal Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <h1>Trading Journal Dashboard</h1>
+
+  <!-- Trade Form -->
+  <form id="trade-form">
+    <input type="number" step="0.01" name="profitLoss" placeholder="Profit/Loss" required>
+    <input type="number" step="0.01" name="dailyGain" placeholder="Daily Gain">
+    <input type="text" name="strategy" placeholder="Strategy">
+    <input type="number" step="0.01" name="risk" placeholder="Risk">
+    <input type="text" name="platform" placeholder="Platform">
+    <label>Confidence: <input type="range" min="1" max="10" name="confidence" id="confidence-slider"><span id="confidence-value">5</span></label>
+    <label>Emotion: <input type="range" min="1" max="10" name="emotion"></label>
+    <input type="file" name="screenshot" accept="image/*">
+    <button type="submit">Add Trade</button>
+  </form>
+
+  <!-- Date Filters -->
+  <div class="filters">
+    <label>Start Date: <input type="date" id="start-date"></label>
+    <label>End Date: <input type="date" id="end-date"></label>
+    <button id="apply-date-filter">Apply Filter</button>
+    <button id="clear-filter">Clear Filter</button>
+  </div>
+
+  <!-- Clear Trades Buttons -->
+  <div class="clear-buttons">
+    <button id="clear-all">Clear All Trades</button>
+    <button id="clear-range">Clear Trades in Date Range</button>
+  </div>
+
+  <!-- Summary -->
+  <div class="summary">
+    <p>Total Trades: <span id="total-trades">0</span></p>
+    <p>Total Gain: <span id="total-gain">0.00</span></p>
+    <p>Average Gain: <span id="average-gain">0.00</span></p>
+    <p>Total Risk/Reward: <span id="total-risk-reward">0.00</span></p>
+  </div>
+
+  <!-- Trades Table -->
+  <table id="trades-table">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Profit/Loss</th>
+        <th>Daily Gain</th>
+        <th>Strategy</th>
+        <th>Risk</th>
+        <th>Platform</th>
+        <th>Confidence</th>
+        <th>Emotion</th>
+        <th>Screenshot</th>
+        <th>Risk/Reward</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <!-- Chart Resize Controls -->
+  <div class="chart-controls">
+    <label>Chart Width: <input type="number" id="chart-width" value="800"> px</label>
+    <label>Chart Height: <input type="number" id="chart-height" value="400"> px</label>
+    <button id="resize-chart">Resize Chart</button>
+  </div>
+
+  <!-- Profit/Loss Chart -->
+  <canvas id="gainChart"></canvas>
+
+  <script src="script.js"></script>
+</body>
+</html>
